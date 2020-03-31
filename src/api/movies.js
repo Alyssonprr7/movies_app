@@ -15,7 +15,7 @@ function requestStarWarsObject(){
 }
 
 export function getStarWarsMovies(){
-    return axios.get(requestStarWarsObject()) // Temos dois rettornos, por que? e qual é o verdadeiro? 
+    return axios(requestStarWarsObject()) // Temos dois rettornos, por que? e qual é o verdadeiro? 
     .then(response => {
         console.log("Funcionou", response)
         return response.data.Search

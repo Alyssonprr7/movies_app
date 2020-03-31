@@ -1,36 +1,35 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './style/App.css';
-import {getStarWarsMovies} from './api/movies';
-import  MovieCard from './components/movieCard' 
+import MovieCatalog from './components/movieCatalog';
+import Users from './components/users'
+import MoviePage from './components/moviePage';
 
 
-class App extends React.Component{
-  state = {
-    movies:[],
-    err:null
-  }
 
-  componentDidMount(){
-    getStarWarsMovies()
-    .then(moviesFromApi => 
-      this.setState(() => {
-        return {
-          movies: moviesFromApi
-        } 
-      }
-      )
-    ).catch()
-  }
-  render(){
+
+class App extends React.Component {
+
+  render() {
     return (
-      <>
-      <div className="App">
-        {this.state.movies.map(myMovie => {
-          return <MovieCard movie = {myMovie} />
-        })}
-      </div>
-    </>
-    );
+      <Router>
+        <Switch>
+          <Route path ="/">
+            <MovieCatalog />
+          </Route>
+          <Route path= "/filme">
+            <MoviePage />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+        </Switch>
+      </Router>
+    )
   }
 }
 
